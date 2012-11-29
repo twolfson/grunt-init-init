@@ -8,7 +8,7 @@
  */
 
 // Basic template description.
-exports.description = 'Standard init:gruntplugin with better test functionality.';
+exports.description = 'Create a grunt template from any grunt template.';
 
 // Template-specific notes to be displayed before question prompts.
 exports.notes = 'The grunt plugin system is still under development. For ' +
