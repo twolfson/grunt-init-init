@@ -21,7 +21,8 @@
       "url": "https://github.com/twolfson/grunt-init-init/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/grunt-init-init",
+  "main": "grunt.js",
+  "bin": "bin/grunt-init-gruntplugin2",
   "engines": {
     "node": ">= 0.6.0"
   },
