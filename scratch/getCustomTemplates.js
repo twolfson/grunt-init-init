@@ -13,10 +13,18 @@ var fs = require('fs'),
 var files = grunt.file.expandFiles(taskFilePattern),
     dirs = grunt.file.expandDirs(taskFilePattern);
 
-// // Normalize the files to be extension-less
-// files = files.map(function (file) {
+// Normalize the files to be extension-less
+files = files.map(function (file) {
+  var extname = path.extname(file),
+      filename = path.basename(file, extname);
+  return filename;
+});
 
-// });
+// Normalize the dirs to basenames as well (overkill silliness with grunt)
+dirs = dirs.map(function (dir) {
+  // Grab the dirname and remove its trailing slash
+  var dirname = path.basename(dir, '/');
+  return dirname;
+});
 
-
-console.log(files);
+console.log(files, dirs);
