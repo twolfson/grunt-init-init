@@ -2,12 +2,11 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    pkg: '<json:package.json>',
     test: {
       files: ['test/**/*.js']
     },
     lint: {
-      files: ['grunt.js', 'src/**/*.js', 'test/**/*.js']
+      files: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
     },
     watch: {
       files: '<config:lint.files>',
@@ -26,23 +25,16 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
         node: true,
-        es5: true,
-        strict: false
+        es5: true
       },
       globals: {}
-    },
-    'install-init': {
-      'init': 'src'
     }
   });
 
-  // Load grunt-install-init
-  grunt.loadNpmTasks('grunt-install-init');
+  // Load local tasks.
+  grunt.loadTasks('tasks');
 
-  // By default, install the init
-  grunt.registerTask('default', 'install-init');
-
-  // Development task
-  grunt.registerTask('dev', 'lint test');
+  // Default task.
+  grunt.registerTask('default', 'lint test');
 
 };

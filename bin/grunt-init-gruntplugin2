@@ -1,0 +1,3 @@
+#!/usr/bin/env node
+process.chdir(__dirname + '/..');
+require('grunt').npmTasks('grunt-init-gruntplugin2').cli();
