@@ -1,0 +1,35 @@
+{
+  "name": "grunt-init-init",
+  "description": "Create a grunt template from any grunt template",
+  "version": "0.1.0",
+  "homepage": "https://github.com/twolfson/grunt-init-init",
+  "author": {
+    "name": "Todd Wolfson",
+    "email": "todd@twolfson.com",
+    "url": "http://twolfson.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/twolfson/grunt-init-init.git"
+  },
+  "bugs": {
+    "url": "https://github.com/twolfson/grunt-init-init/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/twolfson/grunt-init-init/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/grunt-init-init",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.17"
+  },
+  "keywords": []
+}
