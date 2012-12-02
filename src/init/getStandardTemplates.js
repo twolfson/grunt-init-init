@@ -5,6 +5,5 @@ var path = require('path'),
     initDir = path.join(gruntDir, '../../tasks/init'),
     templates = grunt.file.expandFiles(initDir + '/*.js');
 
-console.log(templates);
 // Export the the standard templates
 module.exports = templates;
