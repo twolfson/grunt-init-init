@@ -27,18 +27,21 @@ exports.template = function(grunt, init, done) {
   };
 
   // Load in the templates helper
-  var templates = require('./init/templates');
-  console.log(templates.names);
+  var templates = require('./init/templates'),
+      templateNames = templates.names,
+      templateStr = templateNames.join(', ');
 
   // TODO: This should include not just folders but ALSO apply custom overrides
 
   grunt.helper('prompt_for_obj').template = {
-    // message: {valueOf: Math.random, toString: Math.random }
-    get message() { return '' + Math.random(); }
-    // message: '' + Math.random()
-    // 'default': 'gruntplugin'
+    message: 'What template is this based on? (' + templateStr + ')',
+    warning: 'You must select a template from the list of templates',
+    validator: function (template) {
+      // Assert that the template is in our list
+      var templateIsInList = templateNames.indexOf(template) > -1;
+      return templateIsInList;
+    }
   };
-
 
   grunt.helper('prompt', {type: 'grunt'}, [
     // // Prompt for these values.
