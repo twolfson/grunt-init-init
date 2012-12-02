@@ -26,6 +26,10 @@ exports.template = function(grunt, init, done) {
     'default': 'gruntplugin'
   };
 
+  // Load in the custom and standard templates
+  var stdTemplates = require('./init/getStandardTemplates'),
+      customTemplates = require('./init/getCustomTemplates');
+  console.log(stdTemplates, customTemplates);
   grunt.helper('prompt_for_obj').template = {
     // message: {valueOf: Math.random, toString: Math.random }
     get message() { return '' + Math.random(); }
