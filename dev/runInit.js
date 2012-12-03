@@ -1,5 +1,5 @@
 function noop() {}
-var pathPrefix = __dirname + '/../src/init/';
+var pathPrefix = 'src/init/';
 
 var grunt = require('grunt'),
     init = {
@@ -48,8 +48,11 @@ var grunt = require('grunt'),
     initTemplate = require('../src/init.js');
 
 // Hackish override for grunt.task.expandFiles
-grunt.task.expandFiles = grunt.file.expandFiles;
-// console.log(   pathPrefix, grunt.task.expandFiles({dot: true}, pathPrefix + '**'))
+// https://github.com/gruntjs/grunt/blob/master/lib/grunt/task.js#L209-L255
+// grunt.task.expandFiles = grunt.file.expandFiles;
+grunt.task.searchDirs.push(__dirname + '/..');
+// console.log(grunt.task);
+console.log(   pathPrefix, grunt.task.expandFiles({dot: true}, pathPrefix + '**'))
 
 // Load the default grunt tasks
 grunt.task.loadTasks(__dirname + '/../node_modules/grunt/tasks');
