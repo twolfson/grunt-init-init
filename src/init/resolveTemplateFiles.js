@@ -1,5 +1,6 @@
 // Load in grunt
 var grunt = require('grunt'),
+    path = require('path'),
     paths = require('./paths'),
     customDir = paths.custom,
     stdDir = paths.standard,
@@ -17,10 +18,31 @@ function resolveTemplateFiles(name) {
   var customFiles = expandFiles(customFile).concat(expandFiles(customTemplateDir)),
       stdFiles = expandFiles(stdFile).concat(expandFiles(stdTemplateDir));
 
-  console.log(customFiles, stdFiles);
+  // Generate a hash of files to prevent repeats
+  var fileMap = {};
+  customFiles.forEach(function (file) {
+    // Extract the relative path of the file
+    var relPath = path.relative(customDir, file);
 
-  // TODO: Use filter to remove custom + standard cross-over
+    // Save the relative path
+    fileMap[relPath] = true;
+  });
 
+  // Override each of the stdFiles
+  stdFiles = stdFiles.filter(function (file) {
+    // Extract the relative path of the file
+    var relPath = path.relative(stdDir, file),
+        overrideExists = fileMap[relPath];
+
+    // Return if no override exists
+    return !overrideExists;
+  });
+
+  // Join together the files
+  var files = customFiles.concat(stdFiles);
+
+  // Return the files
+  return files;
 }
 
 // Expose resolveTemplateFiles
