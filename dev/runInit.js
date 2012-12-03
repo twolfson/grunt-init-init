@@ -12,10 +12,13 @@ var grunt = require('grunt'),
 // Load the default grunt tasks
 grunt.task.loadTasks(__dirname + '/../node_modules/grunt/tasks');
 
+// Change the working directory
+process.chdir(__dirname + '/../../init-dev');
+
 initTemplate.template(grunt, init,  function() {
   // Fail task if errors were logged.
   if (grunt.task.current.errorCount) { console.error('An error occurred'); }
 
   // Otherwise, print a success message.
-  grunt.log.writeln().writeln('Initialized from template "' + name + '".');
+  grunt.log.writeln().writeln('Initialized from template "???".');
 });

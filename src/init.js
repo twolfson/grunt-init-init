@@ -41,18 +41,22 @@ exports.template = function(grunt, init, done) {
     }
   };
 
-  // TODO: Upon selection of item, look up template inside of customDir first, then any remaining files inside of normal dir
-  console.log(templates.resolve('jquery'));
+  // Look up template files (custom then standard)
+  // console.log(templates.resolve('jquery'));
+  var files = templates.resolve('jquery');
+  // console.log(process.cwd());
+
+  // Copy over all files
 
   grunt.helper('prompt', {type: 'grunt'}, [
-    // // Prompt for these values.
-    // grunt.helper('prompt_for', 'name', function(value, data, done) {
-    //   // Prepend "grunt-" to default name if not already there.
-    //   data.short_name = value;
-    //   value = data.full_name = 'grunt-' + value;
-    //   // if (!/^grunt-/.test(value)) { value = 'grunt-' + value; }
-    //   done(null, value);
-    // }),
+    // Prompt for these values.
+    grunt.helper('prompt_for', 'name', function(value, data, done) {
+      // Prepend "grunt-" to default name if not already there.
+      data.short_name = value;
+      value = data.full_name = 'grunt-' + value;
+      // if (!/^grunt-/.test(value)) { value = 'grunt-' + value; }
+      done(null, value);
+    }),
     grunt.helper('prompt_for', 'template'),
     grunt.helper('prompt_for', 'description', 'The best sample grunt tasks ever.'),
     grunt.helper('prompt_for', 'version'),
