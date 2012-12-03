@@ -1,5 +1,6 @@
 var stdTemplates = require('./getStandardTemplates'),
     customTemplates = require('./getCustomTemplates'),
+    resolve = require('./resolveTemplateFiles'),
     path = require('path'),
     grunt = require('grunt'),
     gruntUtils = grunt.utils,
@@ -21,6 +22,7 @@ var names = _.union(stdNames, customNames);
 // Expose all template properties
 module.exports = {
   'getTemplateName': getTemplateName,
+  'resolve': resolve,
   'standard': stdTemplates,
   'custom': customTemplates,
   'standardNames': stdNames,

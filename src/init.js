@@ -31,8 +31,6 @@ exports.template = function(grunt, init, done) {
       templateNames = templates.names,
       templateStr = templateNames.join(', ');
 
-  // TODO: This should include not just folders but ALSO apply custom overrides
-
   grunt.helper('prompt_for_obj').template = {
     message: 'What template is this based on? (' + templateStr + ')',
     warning: 'You must select a template from the list of templates',
@@ -42,6 +40,9 @@ exports.template = function(grunt, init, done) {
       return templateIsInList;
     }
   };
+
+  // TODO: Upon selection of item, look up template inside of customDir first, then any remaining files inside of normal dir
+  console.log(templates.resolve('jquery'));
 
   grunt.helper('prompt', {type: 'grunt'}, [
     // // Prompt for these values.
