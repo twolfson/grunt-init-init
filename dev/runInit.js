@@ -1,5 +1,4 @@
 function noop() {}
-var pathPrefix = 'src/init/';
 
 // Change the working directory
 process.chdir(__dirname + '/../../init-dev');
@@ -83,9 +82,14 @@ var grunt = require('grunt'),
     },
     initTemplate = require('../src/init.js');
 
+// https://github.com/gruntjs/grunt/blob/master/tasks/init.js#L83
+var pathPrefix = '../src/init/root/';
+
 // Add in our searchDir
 // https://github.com/gruntjs/grunt/blob/master/lib/grunt/task.js#L209-L255
-grunt.task.searchDirs.push(__dirname + '/..');
+grunt.task.searchDirs.push(__dirname);
+
+console.log(grunt.task.expandFiles({dot: true}, pathPrefix + '**'));
 
 // Load the default grunt tasks
 grunt.task.loadTasks(__dirname + '/../node_modules/grunt/tasks');
