@@ -19,6 +19,7 @@ exports.warnOn = '*';
 
 // The actual init template.
 exports.template = function(grunt, init, done) {
+  var _ = grunt.utils._;
 
   // Add on a keywords prompt
   grunt.helper('prompt_for_obj').keywords = {
@@ -32,7 +33,10 @@ exports.template = function(grunt, init, done) {
       templateStr = templateNames.join(', ');
 
   grunt.helper('prompt_for_obj').template = {
-    message: 'What template is this based on? (' + templateStr + ')',
+    message: 'What template is this based on?',
+    // TODO: REVERT TEMPLATE STR
+    'default': templateStr,
+    'default': 'jquery',
     warning: 'You must select a template from the list of templates',
     validator: function (template) {
       // Assert that the template is in our list
@@ -40,13 +44,6 @@ exports.template = function(grunt, init, done) {
       return templateIsInList;
     }
   };
-
-  // Look up template files (custom then standard)
-  // console.log(templates.resolve('jquery'));
-  var files = templates.resolve('jquery');
-  // console.log(process.cwd());
-
-  // Copy over all files
 
   grunt.helper('prompt', {type: 'grunt'}, [
     // Prompt for these values.
@@ -97,6 +94,20 @@ exports.template = function(grunt, init, done) {
 
     // Generate package.json file.
     init.writePackageJSON('package.json', props);
+
+    // Look up template files (custom then standard)
+    var tplName = props.template,
+        tplFiles = templates.resolve(tplName);
+
+    // Copy template files -- _.each is backwards =(
+    // _.each(tplFiles, function (val, key) {
+    _.each(tplFiles, function (srcFile, destFile) {
+      // Add 'src/' onto destFile
+      destFile = 'src/' + destFile;
+
+      // Copy over the file
+      grunt.file.copy(srcFile, destFile);
+    });
 
     // All done!
     done();

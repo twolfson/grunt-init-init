@@ -18,31 +18,32 @@ function resolveTemplateFiles(name) {
   var customFiles = expandFiles(customFile).concat(expandFiles(customTemplateDir)),
       stdFiles = expandFiles(stdFile).concat(expandFiles(stdTemplateDir));
 
-  // Generate a hash of files to prevent repeats
+  // Generate a hash of files
   var fileMap = {};
+
+  // Iterate over the customFiles
   customFiles.forEach(function (file) {
     // Extract the relative path of the file
     var relPath = path.relative(customDir, file);
 
     // Save the relative path
-    fileMap[relPath] = true;
+    fileMap[relPath] = file;
   });
 
-  // Override each of the stdFiles
-  stdFiles = stdFiles.filter(function (file) {
+  // Iterate over the stdFiles
+  stdFiles.forEach(function (file) {
     // Extract the relative path of the file
     var relPath = path.relative(stdDir, file),
         overrideExists = fileMap[relPath];
 
-    // Return if no override exists
-    return !overrideExists;
+    // If it does not exist, save it
+    if (!overrideExists) {
+      fileMap[relPath] = file;
+    }
   });
 
-  // Join together the files
-  var files = customFiles.concat(stdFiles);
-
-  // Return the files
-  return files;
+  // Return the fileMap
+  return fileMap;
 }
 
 // Expose resolveTemplateFiles

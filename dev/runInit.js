@@ -55,7 +55,6 @@ var grunt = require('grunt'),
       },
       // https://github.com/gruntjs/grunt/blob/master/tasks/init.js#L91-L107
       'copyAndProcess': function(files, props, options) {
-        console.log(files);
         options = grunt.utils._.defaults(options || {}, {
           process: function(contents) {
             return grunt.template.process(contents, props, 'init');
@@ -88,8 +87,6 @@ var pathPrefix = '../src/init/root/';
 // Add in our searchDir
 // https://github.com/gruntjs/grunt/blob/master/lib/grunt/task.js#L209-L255
 grunt.task.searchDirs.push(__dirname);
-
-console.log(grunt.task.expandFiles({dot: true}, pathPrefix + '**'));
 
 // Load the default grunt tasks
 grunt.task.loadTasks(__dirname + '/../node_modules/grunt/tasks');
