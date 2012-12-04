@@ -1,50 +1,50 @@
 module.exports = function (grunt) {
-var path = require('path'),
-    paths = require('./paths')(grunt),
-    customDir = paths.custom,
-    stdDir = paths.standard,
-    expandFiles = grunt.file.expandFiles;
+  var path = require('path'),
+      paths = require('./paths')(grunt),
+      customDir = paths.custom,
+      stdDir = paths.standard,
+      expandFiles = grunt.file.expandFiles;
 
-// Define a helper to find custom and standard template files
-function resolveTemplateFiles(name) {
-  // Create paths for resolving
-  var customFile = customDir + '/' + name + '.js',
-      customTemplateDir = customDir + '/' + name + '/**/*',
-      stdFile = stdDir + '/' + name + '.js',
-      stdTemplateDir = stdDir + '/' + name + '/**/*';
+  // Define a helper to find custom and standard template files
+  function resolveTemplateFiles(name) {
+    // Create paths for resolving
+    var customFile = customDir + '/' + name + '.js',
+        customTemplateDir = customDir + '/' + name + '/**/*',
+        stdFile = stdDir + '/' + name + '.js',
+        stdTemplateDir = stdDir + '/' + name + '/**/*';
 
-  // Grab any and all files
-  var customFiles = expandFiles(customFile).concat(expandFiles(customTemplateDir)),
-      stdFiles = expandFiles(stdFile).concat(expandFiles(stdTemplateDir));
+    // Grab any and all files
+    var customFiles = expandFiles(customFile).concat(expandFiles(customTemplateDir)),
+        stdFiles = expandFiles(stdFile).concat(expandFiles(stdTemplateDir));
 
-  // Generate a hash of files
-  var fileMap = {};
+    // Generate a hash of files
+    var fileMap = {};
 
-  // Iterate over the customFiles
-  customFiles.forEach(function (file) {
-    // Extract the relative path of the file
-    var relPath = path.relative(customDir, file);
+    // Iterate over the customFiles
+    customFiles.forEach(function (file) {
+      // Extract the relative path of the file
+      var relPath = path.relative(customDir, file);
 
-    // Save the relative path
-    fileMap[relPath] = file;
-  });
-
-  // Iterate over the stdFiles
-  stdFiles.forEach(function (file) {
-    // Extract the relative path of the file
-    var relPath = path.relative(stdDir, file),
-        overrideExists = fileMap[relPath];
-
-    // If it does not exist, save it
-    if (!overrideExists) {
+      // Save the relative path
       fileMap[relPath] = file;
-    }
-  });
+    });
 
-  // Return the fileMap
-  return fileMap;
-}
+    // Iterate over the stdFiles
+    stdFiles.forEach(function (file) {
+      // Extract the relative path of the file
+      var relPath = path.relative(stdDir, file),
+          overrideExists = fileMap[relPath];
 
-// Expose resolveTemplateFiles
-return resolveTemplateFiles;
+      // If it does not exist, save it
+      if (!overrideExists) {
+        fileMap[relPath] = file;
+      }
+    });
+
+    // Return the fileMap
+    return fileMap;
+  }
+
+  // Expose resolveTemplateFiles
+  return resolveTemplateFiles;
 };
