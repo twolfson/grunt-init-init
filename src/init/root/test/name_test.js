@@ -25,12 +25,8 @@ exports['{%= short_name %}'] = {
     // setup here
     done();
   },
-  'multiTask': function(test) {
-    test.expect(1);
-    // tests here
-    var expectedContent = grunt.file.read('expected/file.js'),
-        actualContent = grunt.file.read('actual/file.js');
-    test.equal(actualContent, expectedContent, 'should return the correct value.');
+  'placeholder': function(test) {
+    test.expect(0);
     test.done();
   }
 };

@@ -45,14 +45,25 @@ exports.template = function(grunt, init, done) {
     }
   };
 
-  grunt.helper('prompt', {type: 'grunt'}, [
+  // Add on a template_name prompt
+  grunt.helper('prompt_for_obj').template_name = {
+    message: 'What is the name of this template?',
+  };
+
+  grunt.helper('prompt', {type: 'init'}, [
     // Prompt for these values.
-    grunt.helper('prompt_for', 'name', function(value, data, done) {
+    grunt.helper('prompt_for', 'name', function (value, data, done) {
       // Prepend "grunt-" to default name if not already there.
       data.short_name = value;
       value = data.full_name = 'grunt-' + value;
       // if (!/^grunt-/.test(value)) { value = 'grunt-' + value; }
       done(null, value);
+    }),
+    grunt.helper('prompt_for', 'template_name', function (value, data, done) {
+      // Trim down grunt-init-wasd to wasd
+      var full_name = data.full_name,
+          template_name = full_name.replace(/grunt\-?/i, '').replace(/init\-?/i, '');
+      done(null, template_name);
     }),
     grunt.helper('prompt_for', 'template'),
     grunt.helper('prompt_for', 'description', 'The best sample grunt tasks ever.'),

@@ -6,7 +6,7 @@ module.exports = function(grunt) {
       files: ['test/**/*.js']
     },
     lint: {
-      files: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
+      files: ['grunt.js', 'src/**/*.js', 'test/**/*.js']
     },
     watch: {
       files: '<config:lint.files>',
@@ -28,13 +28,19 @@ module.exports = function(grunt) {
         es5: true
       },
       globals: {}
+    },
+    'install-init': {
+      '{%= template_name %}': 'src'
     }
   });
 
-  // Load local tasks.
-  grunt.loadTasks('tasks');
+  // Load grunt-install-init
+  grunt.loadNpmTasks('grunt-install-init');
 
-  // Default task.
-  grunt.registerTask('default', 'lint test');
+  // By default, install the init
+  grunt.registerTask('default', 'install-init');
+
+  // Development task
+  grunt.registerTask('dev', 'lint test');
 
 };
