@@ -35,7 +35,7 @@ exports.template = function(grunt, init, done) {
   grunt.helper('prompt_for_obj').template = {
     message: 'What template is this based on?',
     // TODO: REVERT TEMPLATE STR
-    'default': templateStr,
+    // 'default': templateStr,
     'default': 'jquery',
     warning: 'You must select a template from the list of templates',
     validator: function (template) {
@@ -47,7 +47,7 @@ exports.template = function(grunt, init, done) {
 
   // Add on a template_name prompt
   grunt.helper('prompt_for_obj').template_name = {
-    message: 'What is the name of this template?',
+    message: 'What is the name of this template?'
   };
 
   grunt.helper('prompt', {type: 'init'}, [
@@ -66,7 +66,7 @@ exports.template = function(grunt, init, done) {
       done(null, template_name);
     }),
     grunt.helper('prompt_for', 'template'),
-    grunt.helper('prompt_for', 'description', 'The best sample grunt tasks ever.'),
+    grunt.helper('prompt_for', 'description', 'The best grunt init template ever.'),
     grunt.helper('prompt_for', 'version'),
     grunt.helper('prompt_for', 'repository'),
     grunt.helper('prompt_for', 'homepage'),
@@ -100,6 +100,12 @@ exports.template = function(grunt, init, done) {
     // Add properly-named license files.
     init.addLicenseFiles(files, props.licenses);
 
+    // Specify dependencies of grunt and grunt-install-init
+    props.dependencies = {
+      'grunt': '~' + grunt.version,
+      'grunt-install-init': '~1.0.2'
+    };
+
     // Actually copy (and process) files.
     init.copyAndProcess(files, props);
 
@@ -120,9 +126,10 @@ exports.template = function(grunt, init, done) {
       grunt.file.copy(srcFile, destFile);
     });
 
-    // TODO: Set up .gitignore, .npmignore, package.json -- needs grunt-install-init
     // TODO: and preferrably same keywords as copied directory (as defaults)
     // TODO: Renaming item to its proper source would be a nice touch (i.e. jquery -> {{new_name}})
+    // TODO: Nice touch would be grabbing the default description from the normal template
+    // TODO: Nice touch would be replacing out the default description inside of the templatejs itself @_@
 
     // All done!
     done();
