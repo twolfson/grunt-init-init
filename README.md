@@ -1,10 +1,6 @@
 # grunt-init-init
 
-***STILL IN DEVELOPMENT -- NOT READY FOR PUBLIC USE***
-
 Create a grunt template from any grunt template
-
-Attribution to [grunt-less](https://github.com/jharding/grunt-less) for file structure.
 
 ## Getting Started
 Install `grunt-init-init` globally and call it from the shell

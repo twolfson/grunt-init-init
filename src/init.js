@@ -126,7 +126,7 @@ exports.template = function(grunt, init, done) {
       grunt.file.copy(srcFile, destFile);
     });
 
-    // TODO: and preferrably same keywords as copied directory (as defaults)
+    // TODO: Use same keywords as copied directory (as defaults)
     // TODO: Renaming item to its proper source would be a nice touch (i.e. jquery -> {{new_name}})
     // TODO: Nice touch would be grabbing the default description from the normal template
     // TODO: Nice touch would be replacing out the default description inside of the templatejs itself @_@
