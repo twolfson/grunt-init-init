@@ -28,7 +28,7 @@ exports.template = function(grunt, init, done) {
   };
 
   // Load in the templates helper
-  var templates = require('./init/templates'),
+  var templates = require('./init/templates')(grunt),
       templateNames = templates.names,
       templateStr = templateNames.join(', ');
 

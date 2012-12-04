@@ -1,6 +1,6 @@
 // Load up grunt and fetch the task dir path
-var grunt = require('grunt'),
-    paths = require('./paths'),
+module.exports = function (grunt) {
+var paths = require('./paths')(grunt),
     initDir = paths.custom,
     files = [];
 
@@ -11,4 +11,5 @@ if (initDir) {
 }
 
 // Export the files
-module.exports = files;
+return files;
+};

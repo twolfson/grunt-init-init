@@ -1,6 +1,6 @@
 // Load in required modules
-var grunt = require('grunt'),
-    path = require('path');
+module.exports = function (grunt) {
+var path = require('path');
 
 // Grab the keys of require.cache
 var requireCache = require.cache,
@@ -34,8 +34,9 @@ var stdDir = path.join(gruntPath, '../../tasks/init');
 var customDir = grunt.file.userDir('tasks/init');
 
 // Expose the dirs
-module.exports = {
+return {
   'grunt': gruntPath,
   'standard': stdDir,
   'custom': customDir
+};
 };
