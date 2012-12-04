@@ -109,6 +109,10 @@ exports.template = function(grunt, init, done) {
       grunt.file.copy(srcFile, destFile);
     });
 
+    // TODO: Set up .gitignore, .npmignore, package.json -- needs grunt-install-init
+    // TODO: and preferrably same keywords as copied directory (as defaults)
+    // TODO: Renaming item to its proper source would be a nice touch (i.e. jquery -> {{new_name}})
+
     // All done!
     done();
   });
