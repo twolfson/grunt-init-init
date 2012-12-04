@@ -1,6 +1,6 @@
 // Load in required modules
-var grunt = require('grunt'),
-    path = require('path');
+module.exports = function (grunt) {
+var path = require('path');
 
 // Standard path
 var gruntPath = require.resolve('grunt'),
@@ -10,8 +10,9 @@ var gruntPath = require.resolve('grunt'),
 var customDir = grunt.file.userDir('tasks/init');
 
 // Expose the dirs
-module.exports = {
+return {
   'grunt': gruntPath,
   'standard': stdDir,
   'custom': customDir
+};
 };

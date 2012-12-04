@@ -1,8 +1,8 @@
-var stdTemplates = require('./getStandardTemplates'),
-    customTemplates = require('./getCustomTemplates'),
-    resolve = require('./resolveTemplateFiles'),
+module.exports = function (grunt) {
+var stdTemplates = require('./getStandardTemplates')(grunt),
+    customTemplates = require('./getCustomTemplates')(grunt),
+    resolve = require('./resolveTemplateFiles')(grunt),
     path = require('path'),
-    grunt = require('grunt'),
     gruntUtils = grunt.utils,
     _ = gruntUtils._;
 
@@ -20,7 +20,7 @@ var stdNames = stdTemplates.map(getTemplateName),
 var names = _.union(stdNames, customNames);
 
 // Expose all template properties
-module.exports = {
+return {
   'getTemplateName': getTemplateName,
   'resolve': resolve,
   'standard': stdTemplates,
@@ -28,4 +28,5 @@ module.exports = {
   'standardNames': stdNames,
   'customNames': customNames,
   'names': names
+};
 };

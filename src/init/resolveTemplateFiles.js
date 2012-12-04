@@ -1,7 +1,6 @@
-// Load in grunt
-var grunt = require('grunt'),
-    path = require('path'),
-    paths = require('./paths'),
+module.exports = function (grunt) {
+var path = require('path'),
+    paths = require('./paths')(grunt),
     customDir = paths.custom,
     stdDir = paths.standard,
     expandFiles = grunt.file.expandFiles;
@@ -47,4 +46,5 @@ function resolveTemplateFiles(name) {
 }
 
 // Expose resolveTemplateFiles
-module.exports = resolveTemplateFiles;
+return resolveTemplateFiles;
+};
