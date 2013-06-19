@@ -1,4 +1,4 @@
-# grunt-init-init
+# grunt-init-init [![Donate on Gittip](http://badgr.co/gittip/twolfson.png)](https://www.gittip.com/twolfson/)
 
 Create a grunt template from any grunt template
 
